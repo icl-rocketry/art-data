@@ -6,7 +6,6 @@ function [t, alt, vel, temp, voltage] = pnut_extractor(launch)
     col3 = '#3EC300';
     col4 = '#3C153B';
     lw = 1;
-    launch = 'APEXI-jul02';
 
     data = readmatrix(sprintf('%s.pf2', launch), 'NumHeaderLines', 11, 'FileType', 'text');
 
