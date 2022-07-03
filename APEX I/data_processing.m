@@ -48,8 +48,10 @@ plot(data.time, data.gyro_y, 'LineWidth', lw, 'Color', col2)
 plot(data.time, data.gyro_z, 'LineWidth', lw, 'Color', col3)
 title('Rotation');
 xlabel('Time (s)')
-ylabel('Angular Velocity (rads^-1')
+ylabel('Angular Velocity (rads^{-1}')
 legend('x', 'y', 'z', 'Location', 'best')
+
+
 
 function data = unpack(launch)
     
