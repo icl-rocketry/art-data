@@ -15,6 +15,12 @@ lw = 1;
 data = parse(launch);
 
 figure
+plot(data.time, data.altitude, 'LineWIdth', lw, 'Color', col1)
+title('Altitude ASL (m)')
+xlabel('Time (s)')
+ylabel('Altitude')
+
+figure
 hold on
 plot(data.time, data.acc_x, 'LineWidth', lw, 'Color', col1)
 plot(data.time, data.acc_y, 'LineWidth', lw, 'Color', col2)
@@ -30,7 +36,7 @@ hold on
 plot(data.time, data.gyro_x, 'LineWidth', lw, 'Color', col1)
 plot(data.time, data.gyro_y, 'LineWidth', lw, 'Color', col2)
 plot(data.time, data.gyro_z, 'LineWidth', lw, 'Color', col3)
-title('Ro   tation');
+title('Rotation');
 xlabel('Time (s)')
 ylabel('Angular Velocity (rads^-1')
 legend('x', 'y', 'z', 'Location', 'best')
