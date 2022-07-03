@@ -25,24 +25,27 @@ function data = unpack(launch)
 end
 
 function data = parse(launch)
+
+    G = 9.8065;
+    
     start = 2000;
     finish = 4000;
     
     raw = unpack(launch);
     data = struct();
     data.time = raw(start:finish, 1)/1000;
-    data.acc_x = raw(start:finish, 2);
-    data.acc_y = raw(start:finish, 3);
-    data.acc_z = raw(start:finish, 4);
+    data.acc_x = raw(start:finish, 2)*G;
+    data.acc_y = raw(start:finish, 3)*G;
+    data.acc_z = raw(start:finish, 4)*G;
     data.gyro_x = raw(start:finish, 5);
     data.gyro_y = raw(start:finish, 6);
     data.gyro_z = raw(start:finish, 7);
     data.mag_x = raw(start:finish, 8);
     data.mag_y = raw(start:finish, 9);
     data.mag_z = raw(start:finish, 10);
-    data.linacc_x = raw(start:finish, 11);
-    data.linacc_y = raw(start:finish, 12);
-    data.linacc_z = raw(start:finish, 13);
+    data.linacc_x = raw(start:finish, 11)*G;
+    data.linacc_y = raw(start:finish, 12)*G;
+    data.linacc_z = raw(start:finish, 13)*G;
     data.geomag_i = raw(start:finish, 14);
     data.geomag_j = raw(start:finish, 15);
     data.geomag_k = raw(start:finish, 16);
