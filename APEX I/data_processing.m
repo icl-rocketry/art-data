@@ -19,6 +19,8 @@ plot(data.time, data.altitude, 'LineWidth', lw, 'Color', col1)
 title('Altitude ASL (m)')
 xlabel('Time (s)')
 ylabel('Altitude')
+exportgraphics(gcf, sprintf('%s_DPSalt.png', launch), 'Resolution', 600);
+
 
 figure
 hold on
@@ -30,6 +32,8 @@ title('Acceleration');
 xlabel('Time (s)')
 ylabel('Acceleration (ms^-1)')
 legend('x', 'y', 'z', 'Magnitude', 'Location', 'best')
+exportgraphics(gcf, sprintf('%s_acceleration.png', launch), 'Resolution', 600);
+
 
 figure
 hold on
@@ -40,6 +44,8 @@ title('Linear Acceleration');
 xlabel('Time (s)')
 ylabel('Acceleration (ms^-1)')
 legend('x', 'y', 'z', 'Location', 'best')
+exportgraphics(gcf, sprintf('%s_linacc.png', launch), 'Resolution', 600);
+
 
 figure
 hold on
@@ -60,22 +66,28 @@ title('Orientation');
 xlabel('Time (s)')
 ylabel('Angle (deg)')
 legend('phi', 'psi', 'theta', 'Location', 'best')
+exportgraphics(gcf, sprintf('%s_gyro.png', launch), 'Resolution', 600);
+
 
 figure
 hold on
 plot(data.time, data.phi, 'LineWidth', lw, 'Color', col1)
 plot(data.time, data.theta, 'LineWidth', lw, 'Color', col2)
 plot(data.time, data.psi, 'LineWidth', lw, 'Color', col3)
-title('Orientation - Geomagnetic');
+title('Orientation');
 xlabel('Time (s)')
 ylabel('Angle (deg)')
 legend('phi', 'psi', 'theta', 'Location', 'best')
+exportgraphics(gcf, sprintf('%s_orientation.png', launch), 'Resolution', 600);
+
 
 figure
 plot(data.time, data.temp, 'LineWidth', lw, 'Color', col1)
 title('Temperature (C)')
 xlabel('Time (s)')
 ylabel('Teperature')
+exportgraphics(gcf, sprintf('%s_temp.png', launch), 'Resolution', 600);
+
 
 figure
 plot(data.time, 'LineWidth', lw, 'Color', col1)
