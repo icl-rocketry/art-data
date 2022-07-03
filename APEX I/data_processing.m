@@ -14,6 +14,7 @@ lw = 1;
 
 data = parse(launch)
 
+
 function data = unpack(launch)
 
     command = sprintf("python parser.py %s-custom", launch);
@@ -54,6 +55,7 @@ function data = parse(launch)
     data.temp = raw(start:finish, 23);
     
     data.altitude = atmospalt(data.pressure);
+    data.acc_mag = sqrt(data.acc_x.^2 + data.acc_y.^2 + data.acc_z^2);
     
 end
 
