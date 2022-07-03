@@ -51,6 +51,15 @@ xlabel('Time (s)')
 ylabel('Angular Velocity (rads^{-1}')
 legend('x', 'y', 'z', 'Location', 'best')
 
+figure
+hold on
+plot(data.time, data.phi, 'LineWidth', lw, 'Color', col1)
+plot(data.time, data.theta, 'LineWidth', lw, 'Color', col2)
+plot(data.time, data.psi, 'LineWidth', lw, 'Color', col3)
+title('Orientation');
+xlabel('Time (s)')
+ylabel('Angle (deg)')
+legend('phi', 'psi', 'theta', 'Location', 'best')
 
 
 
@@ -113,9 +122,9 @@ end
 
 function [phi, theta, psi] = q2e(i, j, k, w)
 
-    phi = atan((2*(i*j + k*w)/(1 - 2*(j^2+k^2)));
-    theta = asin(2*(i*k - j*w));
-    psi = atan((2*(i*w + j*k)/(1 - 2*(k^2+w^2)));
+    phi = atan((2*(i.*j + k.*w)/(1 - 2*(j.^2+k.^2))));
+    theta = asin(2*(i.*k - j.*w));
+    psi = atan((2*(i.*w + j.*k)/(1 - 2*(k.^2+w.^2))));
     
     phi = rad2deg(phi);
     theta = rad2deg(theta);
