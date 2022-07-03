@@ -16,13 +16,13 @@ data = parse(launch);
 
 figure
 hold on
-plot(t, data.acc_x, 'LineWidth', lw, 'Color', col1)
-plot(t, data.acc_y, 'LineWidth', lw, 'Color', col2)
-plot(t, data.acc_z, 'LineWidth', lw, 'Color', col3)
-plot(t, data.acc_mag, 'LineWidth', 1, 'Color', col4)
-title('Acceleration - Custom');
+plot(data.time, data.acc_x, 'LineWidth', lw, 'Color', col1)
+plot(data.time, data.acc_y, 'LineWidth', lw, 'Color', col2)
+plot(data.time, data.acc_z, 'LineWidth', lw, 'Color', col3)
+plot(data.time, data.acc_mag, 'LineWidth', 1, 'Color', col4)
+title('Acceleration');
 xlabel('Time (s)')
-ylabel('Acceleration (m/s^2)')
+ylabel('Acceleration (ms^-1)')
 legend('x', 'y', 'z', 'Magnitude', 'Location', 'best')
 
 function data = unpack(launch)
@@ -37,8 +37,8 @@ function data = unpack(launch)
             error('An error occured while parsing, please try again.');
         end
     end
-    data = readmatrix(sprintf('%s-custom_parsed.csv', launch));
     
+    data = readmatrix(sprintf('%s-custom_parsed.csv', launch));
 end
 
 function data = parse(launch)
@@ -54,18 +54,18 @@ function data = parse(launch)
     % shift t values to recording start
     data.time = data.time - min(data.time);
 
-    data.acc_x = raw(start:finish, 2)*G;
-    data.acc_y = raw(start:finish, 3)*G;
-    data.acc_z = raw(start:finish, 4)*G;
+    data.acc_x = raw(start:finish, 2);
+    data.acc_y = raw(start:finish, 3);
+    data.acc_z = raw(start:finish, 4);
     data.gyro_x = raw(start:finish, 5);
     data.gyro_y = raw(start:finish, 6);
     data.gyro_z = raw(start:finish, 7);
     data.mag_x = raw(start:finish, 8);
     data.mag_y = raw(start:finish, 9);
     data.mag_z = raw(start:finish, 10);
-    data.linacc_x = raw(start:finish, 11)*G;
-    data.linacc_y = raw(start:finish, 12)*G;
-    data.linacc_z = raw(start:finish, 13)*G;
+    data.linacc_x = raw(start:finish, 11);
+    data.linacc_y = raw(start:finish, 12);
+    data.linacc_z = raw(start:finish, 13);
     data.geomag_i = raw(start:finish, 14);
     data.geomag_j = raw(start:finish, 15);
     data.geomag_k = raw(start:finish, 16);
@@ -78,7 +78,7 @@ function data = parse(launch)
     data.temp = raw(start:finish, 23);
     
     data.altitude = atmospalt(data.pressure);
-    data.acc_mag = sqrt(data.acc_x.^2 + data.acc_y.^2 + data.acc_z^2);
+    data.acc_mag = sqrt(data.acc_x.^2 + data.acc_y.^2 + data.acc_z.^2);
     
 end
 
