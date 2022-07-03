@@ -1,7 +1,15 @@
 clc
 clear
+close all
 
 launch = 'APEXI-jul02';
+
+col1 = '#2978a0';
+col2 = '#BA1200';
+col3 = '#3EC300';
+col4 = '#3C153B';
+lw = 1;
+    
 [t, alt, vel, temp, voltage] = pnut_extractor(launch);
 
 data = parse(launch)
