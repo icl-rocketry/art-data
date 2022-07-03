@@ -118,6 +118,7 @@ function data = parse(launch)
     data.altitude = atmospalt(data.pressure);
     data.acc_mag = sqrt(data.acc_x.^2 + data.acc_y.^2 + data.acc_z.^2);
     [data.phi, data.theta, data.psi] = q2e(data.rot_i, data.rot_j, data.rot_k, data.rot_w);
+    [data.phi, data.theta, data.psi] = q2e(data.rot_i, data.rot_j, data.rot_k, data.rot_w);
 end
 
 function [phi, theta, psi] = q2e(i, j, k, w)
