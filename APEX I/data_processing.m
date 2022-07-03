@@ -30,7 +30,7 @@ plot(data.time, data.acc_z, 'LineWidth', lw, 'Color', col3)
 plot(data.time, data.acc_mag, 'LineWidth', 1, 'Color', col4)
 title('Acceleration');
 xlabel('Time (s)')
-ylabel('Acceleration (ms^-1)')
+ylabel('Acceleration (ms^{-1})')
 legend('x', 'y', 'z', 'Magnitude', 'Location', 'best')
 exportgraphics(gcf, sprintf('%s_acceleration.png', launch), 'Resolution', 600);
 
@@ -42,7 +42,7 @@ plot(data.time, data.linacc_y, 'LineWidth', lw, 'Color', col2)
 plot(data.time, data.linacc_z, 'LineWidth', lw, 'Color', col3)
 title('Linear Acceleration');
 xlabel('Time (s)')
-ylabel('Acceleration (ms^-1)')
+ylabel('Acceleration (ms^{-1)}')
 legend('x', 'y', 'z', 'Location', 'best')
 exportgraphics(gcf, sprintf('%s_linacc.png', launch), 'Resolution', 600);
 
