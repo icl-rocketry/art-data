@@ -32,7 +32,10 @@ function data = unpack(launch)
     else
         command = sprintf("python parser.py %s-custom", launch);
         fprintf('Parsing data from %s launch \n', launch);
-        status = system(command);
+        status = system(command, '-echo');
+        if status ~= 0
+            error('An error occured while parsing, please try again.');
+        end
     end
     data = readmatrix(sprintf('%s-custom_parsed.csv', launch));
     
