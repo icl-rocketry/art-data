@@ -2,9 +2,13 @@ clc
 clear
 close all
 
-
 set(0, 'DefaultLineLineWidth', 1.4);
-%set(0, 'DefaultAxesFontSize', 20);
+set(groot, 'DefaultFigurePosition', [400 300 800 800*9/16]);
+set(0, 'DefaultTextFontSize', 12);
+set(0, 'DefaultTextInterpreter', "Latex");
+set(groot,'DefaultAxesTickLabelInterpreter',"Latex")
+set(groot,'DefaultAxesFontSize',12)
+set(groot,'DefaultLegendInterpreter',"Latex")
 
 launch = 'APEXI-jul02';
 
@@ -18,27 +22,20 @@ lw = 1;
 
 fig = figure;
 plot(t,alt)
-xlabel('Time (s)', 'Interpreter','latex','FontSize',12)
-ylabel('Unfiltered altitude (m)', 'Interpreter','latex','FontSize',12)
+xlabel('Time (s)')
+ylabel('Unfiltered altitude (m)')
 box on
 grid minor
-set(gca,'TickLabelInterpreter','latex')
-set(gca,"FontSize",12)
 ylim([0 3000])
-fig.Position = [100 100 800 800*9/16];
 
 filtered_alt = smooth(alt,20);
 
 fig = figure;
 plot(t,filtered_alt)
-xlabel('Time (s)', 'Interpreter','latex','FontSize',12)
-ylabel('Unfiltered altitude (m)', 'Interpreter','latex','FontSize',12)
-box on
+xlabel('Time (s)')
+ylabel('Filtered altitude (m)')
 grid minor
-set(gca,'TickLabelInterpreter','latex')
-set(gca,"FontSize",12)
 ylim([0 3000])
-fig.Position = [100 100 800 800*9/16];
 
 filtered_vel = zeros(1,length(alt));
 
@@ -56,9 +53,7 @@ xlabel('Time (s)', 'Interpreter','latex','FontSize',12)
 ylabel('Unfiltered altitude (m)', 'Interpreter','latex','FontSize',12)
 box on
 grid minor
-set(gca,'TickLabelInterpreter','latex')
-set(gca,"FontSize",12)
-fig.Position = [100 100 800 800*9/16];
+
 
 fig = figure;
 title('APEX 03/07/2022 Launch - Pnut Data','Interpreter','latex','FontSize',12)
@@ -67,17 +62,14 @@ plot(t,filtered_alt)
 ylabel('Altitude (m)', 'Interpreter','latex','FontSize',12)
 xline(2.9,'k--')
 yline(2845,'k--')
-text(100,2700,'Apogee = 2845 m','Interpreter','latex','FontSize',12)
-text(100,2700,'Apogee = 2845 m','Interpreter','latex','FontSize',12)
+text(100,2700,'Apogee = 2845 m')
+text(100,2700,'Apogee = 2845 m')
 yyaxis right
 plot(t,filtered_vel)
-ylabel('Velocity (ms$^{-1}$)', 'Interpreter','latex','FontSize',12)
-xlabel('Time (s)', 'Interpreter','latex','FontSize',12)
+ylabel('Velocity (ms$^{-1}$)')
+xlabel('Time (s)')
 box on
 grid minor
-set(gca,'TickLabelInterpreter','latex')
-set(gca,"FontSize",12)
-fig.Position = [100 100 800 800*9/16];
 saveas(gca,'APEX_pnut_plot_vect','epsc')
 saveas(gca,'APEX_pnut_plot','png')
 
@@ -88,6 +80,8 @@ plot(data.time, data.altitude, 'LineWidth', lw, 'Color', col1)
 title('Altitude ASL (m)')
 xlabel('Time (s)')
 ylabel('Altitude')
+box on
+grid minor
 exportgraphics(gcf, sprintf('%s_DPSalt.png', launch), 'Resolution', 600);
 
 
@@ -99,8 +93,10 @@ plot(data.time, data.acc_z, 'LineWidth', lw, 'Color', col3)
 plot(data.time, data.acc_mag, 'LineWidth', 1, 'Color', col4)
 title('Acceleration');
 xlabel('Time (s)')
-ylabel('Acceleration (ms^{-1})')
+ylabel('Acceleration (ms$^{-2}$)')
 legend('x', 'y', 'z', 'Magnitude', 'Location', 'best')
+box on
+grid minor
 exportgraphics(gcf, sprintf('%s_acceleration.png', launch), 'Resolution', 600);
 
 
@@ -111,8 +107,10 @@ plot(data.time, data.linacc_y, 'LineWidth', lw, 'Color', col2)
 plot(data.time, data.linacc_z, 'LineWidth', lw, 'Color', col3)
 title('Linear Acceleration');
 xlabel('Time (s)')
-ylabel('Acceleration (ms^{-1)}')
+ylabel('Acceleration (ms$^{-2}$)')
 legend('x', 'y', 'z', 'Location', 'best')
+box on
+grid minor
 exportgraphics(gcf, sprintf('%s_linacc.png', launch), 'Resolution', 600);
 
 
@@ -122,9 +120,11 @@ plot(data.time, data.gyro_x, 'LineWidth', lw, 'Color', col1)
 plot(data.time, data.gyro_y, 'LineWidth', lw, 'Color', col2)
 plot(data.time, data.gyro_z, 'LineWidth', lw, 'Color', col3)
 title('Rotation');
-xlabel('Time (s)')
-ylabel('Angular Velocity (rads^{-1}')
+xlabel('Time (s)');
+ylabel('Angular Velocity (rad s$^{-1}$)')
 legend('x', 'y', 'z', 'Location', 'best')
+box on
+grid minor
 
 figure
 hold on
@@ -133,8 +133,10 @@ plot(data.time, data.theta, 'LineWidth', lw, 'Color', col2)
 plot(data.time, data.psi, 'LineWidth', lw, 'Color', col3)
 title('Orientation');
 xlabel('Time (s)')
-ylabel('Angle (deg)')
-legend('phi', 'psi', 'theta', 'Location', 'best')
+ylabel('Angle ($\deg$)')
+legend({'$\phi$' '$\psi$' '$\theta$'}, 'Location', 'best')
+box on
+grid minor
 exportgraphics(gcf, sprintf('%s_gyro.png', launch), 'Resolution', 600);
 
 
@@ -145,16 +147,19 @@ plot(data.time, data.theta, 'LineWidth', lw, 'Color', col2)
 plot(data.time, data.psi, 'LineWidth', lw, 'Color', col3)
 title('Orientation');
 xlabel('Time (s)')
-ylabel('Angle (deg)')
-legend('phi', 'psi', 'theta', 'Location', 'best')
+ylabel('Angle ($\deg$)')
+legend({'$\phi$' '$\psi$' '$\theta$'}, 'Location', 'best')
+box on 
+grid minor
 exportgraphics(gcf, sprintf('%s_orientation.png', launch), 'Resolution', 600);
-
 
 figure
 plot(data.time, data.temp, 'LineWidth', lw, 'Color', col1)
-title('Temperature (C)')
+title('Temperature')
 xlabel('Time (s)')
-ylabel('Teperature')
+ylabel('Teperature ($^\circ C$)')
+box on
+grid minor
 exportgraphics(gcf, sprintf('%s_temp.png', launch), 'Resolution', 600);
 
 
@@ -163,6 +168,8 @@ plot(data.time, 'LineWidth', lw, 'Color', col1)
 title('Data Capture')
 xlabel('Data Points')
 ylabel('Time Elapsed (s)')
+box on
+grid minor
 
 
 function data = unpack(launch)
