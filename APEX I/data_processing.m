@@ -15,7 +15,7 @@ lw = 1;
 data = parse(launch);
 
 figure
-plot(data.time, data.altitude, 'LineWIdth', lw, 'Color', col1)
+plot(data.time, data.altitude, 'LineWidth', lw, 'Color', col1)
 title('Altitude ASL (m)')
 xlabel('Time (s)')
 ylabel('Altitude')
@@ -72,10 +72,17 @@ ylabel('Angle (deg)')
 legend('phi', 'psi', 'theta', 'Location', 'best')
 
 figure
-plot(data.time, data.temp, 'LineWIdth', lw, 'Color', col1)
+plot(data.time, data.temp, 'LineWidth', lw, 'Color', col1)
 title('Temperature (C)')
 xlabel('Time (s)')
-ylabel('Altitude')
+ylabel('Teperature')
+
+figure
+plot(data.time, 'LineWidth', lw, 'Color', col1)
+title('Data Capture')
+xlabel('Data Points')
+ylabel('Time Elapsed (s)')
+
 
 function data = unpack(launch)
     
