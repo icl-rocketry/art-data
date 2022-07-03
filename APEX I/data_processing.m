@@ -25,6 +25,16 @@ xlabel('Time (s)')
 ylabel('Acceleration (ms^-1)')
 legend('x', 'y', 'z', 'Magnitude', 'Location', 'best')
 
+figure
+hold on
+plot(data.time, data.gyro_x, 'LineWidth', lw, 'Color', col1)
+plot(data.time, data.gyro_y, 'LineWidth', lw, 'Color', col2)
+plot(data.time, data.gyro_z, 'LineWidth', lw, 'Color', col3)
+title('Ro   tation');
+xlabel('Time (s)')
+ylabel('Angular Velocity (rads^-1')
+legend('x', 'y', 'z', 'Location', 'best')
+
 function data = unpack(launch)
     
     if isfile(sprintf('%s-custom_parsed.csv', launch))
