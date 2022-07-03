@@ -61,7 +61,21 @@ xlabel('Time (s)')
 ylabel('Angle (deg)')
 legend('phi', 'psi', 'theta', 'Location', 'best')
 
+figure
+hold on
+plot(data.time, data.phi, 'LineWidth', lw, 'Color', col1)
+plot(data.time, data.theta, 'LineWidth', lw, 'Color', col2)
+plot(data.time, data.psi, 'LineWidth', lw, 'Color', col3)
+title('Orientation - Geomagnetic');
+xlabel('Time (s)')
+ylabel('Angle (deg)')
+legend('phi', 'psi', 'theta', 'Location', 'best')
 
+figure
+plot(data.time, data.temp, 'LineWIdth', lw, 'Color', col1)
+title('Temperature (C)')
+xlabel('Time (s)')
+ylabel('Altitude')
 
 function data = unpack(launch)
     
@@ -118,7 +132,7 @@ function data = parse(launch)
     data.altitude = atmospalt(data.pressure);
     data.acc_mag = sqrt(data.acc_x.^2 + data.acc_y.^2 + data.acc_z.^2);
     [data.phi, data.theta, data.psi] = q2e(data.rot_i, data.rot_j, data.rot_k, data.rot_w);
-    [data.phi, data.theta, data.psi] = q2e(data.rot_i, data.rot_j, data.rot_k, data.rot_w);
+    [data.geophi, data.geotheta, data.geopsi] = q2e(data.geomag_i, data.geomag_j, data.geomag_k, data.rot_w);
 end
 
 function [phi, theta, psi] = q2e(i, j, k, w)
