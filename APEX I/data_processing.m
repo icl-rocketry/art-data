@@ -50,7 +50,7 @@ function data = parse(launch)
     data.rot_j = raw(start:finish, 19);
     data.rot_k = raw(start:finish, 20);
     data.rot_w = raw(start:finish, 21);
-    data.pressure = raw(start:finish, 22);
+    data.pressure = raw(start:finish, 22)*100;
     data.temp = raw(start:finish, 23);
     
     data.altitude = atmospalt(data.pressure);
