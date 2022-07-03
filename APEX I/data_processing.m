@@ -12,14 +12,28 @@ lw = 1;
     
 [t, alt, vel, temp, voltage] = pnut_extractor(launch);
 
-data = parse(launch)
+data = parse(launch);
 
+figure
+hold on
+plot(t, data.acc_x, 'LineWidth', lw, 'Color', col1)
+plot(t, data.acc_y, 'LineWidth', lw, 'Color', col2)
+plot(t, data.acc_z, 'LineWidth', lw, 'Color', col3)
+plot(t, data.acc_mag, 'LineWidth', 1, 'Color', col4)
+title('Acceleration - Custom');
+xlabel('Time (s)')
+ylabel('Acceleration (m/s^2)')
+legend('x', 'y', 'z', 'Magnitude', 'Location', 'best')
 
 function data = unpack(launch)
-
-    command = sprintf("python parser.py %s-custom", launch);
-    fprintf('Parsing data from %s launch \n', launch);
-    status = system(command);
+    
+    if isfile(sprintf('%s-custom_parsed.csv', launch))
+        disp ('Bin already parsed, importing data');
+    else
+        command = sprintf("python parser.py %s-custom", launch);
+        fprintf('Parsing data from %s launch \n', launch);
+        status = system(command);
+    end
     data = readmatrix(sprintf('%s-custom_parsed.csv', launch));
     
 end
@@ -33,7 +47,10 @@ function data = parse(launch)
     
     raw = unpack(launch);
     data = struct();
-    data.time = raw(start:finish, 1)/1000;
+    data.time = raw(start:finish, 1)/1000; % ms to s
+    % shift t values to recording start
+    data.time = data.time - min(data.time);
+
     data.acc_x = raw(start:finish, 2)*G;
     data.acc_y = raw(start:finish, 3)*G;
     data.acc_z = raw(start:finish, 4)*G;
