@@ -53,6 +53,7 @@ legend('x', 'y', 'z', 'Location', 'best')
 
 
 
+
 function data = unpack(launch)
     
     if isfile(sprintf('%s-custom_parsed.csv', launch))
@@ -115,6 +116,10 @@ function [phi, theta, psi] = q2e(i, j, k, w)
     phi = atan((2*(i*j + k*w)/(1 - 2*(j^2+k^2)));
     theta = asin(2*(i*k - j*w));
     psi = atan((2*(i*w + j*k)/(1 - 2*(k^2+w^2)));
+    
+    phi = rad2deg(phi);
+    theta = rad2deg(theta);
+    psi = rad2deg(psi);
 end
 
 
