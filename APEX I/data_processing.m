@@ -4,7 +4,7 @@ clear
 launch = 'APEXI-jul02';
 [t, alt, vel, temp, voltage] = pnut_extractor(launch);
 
-
+data = parse(launch)
 
 function data = unpack(launch)
 
@@ -45,5 +45,10 @@ function data = parse(launch)
     data.pressure = raw(start:finish, 22);
     data.temp = raw(start:finish, 23);
     
+    data.altitude = atmospalt(data.pressure);
+    
 end
+
+
+
 
