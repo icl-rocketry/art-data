@@ -28,7 +28,7 @@ box on
 grid minor
 ylim([0 3000])
 
-filtered_alt = smooth(alt,20);
+filtered_alt = smooth(alt,5);
 
 fig = figure;
 plot(t,filtered_alt)
@@ -39,13 +39,13 @@ ylim([0 3000])
 
 filtered_vel = zeros(1,length(alt));
 
-for i = 2:length(filtered_vel)
+for i = 2:length(filtered_vel)-1
 
-    filtered_vel(i) = (filtered_alt(i)-filtered_alt(i-1))/(t(2)-t(1));
+    filtered_vel(i) = (filtered_alt(i+1)-filtered_alt(i-1))/(2*t(2)-2*t(1));
 
 end
 
-filtered_vel = smooth(filtered_vel,15);
+filtered_vel = smooth(filtered_vel,25);
 
 fig = figure;
 plot(t,filtered_vel)
@@ -54,19 +54,24 @@ ylabel('Unfiltered altitude (m)', 'Interpreter','latex','FontSize',12)
 box on
 grid minor
 
+[~,a,~,~] = atmosisa(367);
+
 
 fig = figure;
-title('APEX 03/07/2022 Launch - Pnut Data','Interpreter','latex','FontSize',12)
+title('APEX 02/07/2022 Launch - COTS Avionics Data','Interpreter','latex','FontSize',12)
 yyaxis left
 plot(t,filtered_alt)
-ylabel('Altitude (m)', 'Interpreter','latex','FontSize',12)
-xline(2.9,'k--')
+ylabel('Altitude AGL (m)', 'Interpreter','latex','FontSize',12)
 yline(2845,'k--')
-text(100,2700,'Apogee = 2845 m')
-text(100,2700,'Apogee = 2845 m')
+text(100,2700,'Apogee = 2845 m (9333 ft)')
+ylim([-100/550*3500 3500])
+
 yyaxis right
 plot(t,filtered_vel)
+yline(max(filtered_vel),'k--')
 ylabel('Velocity (ms$^{-1}$)')
+text(76,500,sprintf('Max velocity = %.0f ms$^{-1}$ (Mach = %.2f)',max(filtered_vel),max(filtered_vel)/a))
+ylim([-100 550])
 xlabel('Time (s)')
 box on
 grid minor
@@ -84,7 +89,7 @@ box on
 grid minor
 exportgraphics(gcf, sprintf('%s_DPSalt.png', launch), 'Resolution', 600);
 
-
+%%
 figure
 hold on
 plot(data.time, data.acc_x, 'LineWidth', lw, 'Color', col1)
