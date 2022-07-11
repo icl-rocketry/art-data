@@ -77,7 +77,7 @@ box on
 grid minor
 % saveas(gca,'APEX_pnut_plot_vect','epsc')
 % saveas(gca,'APEX_pnut_plot','png')
-exportgraphics(gcf, sprintf('%s_pnut_plot.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_pnut_plot.png', launch), 'Resolution', 600);
 
 data = parse(launch);
 
@@ -88,7 +88,7 @@ xlabel('Time (s)')
 ylabel('Altitude')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_DPSalt.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_DPSalt.png', launch), 'Resolution', 600);
 
 %%
 figure
@@ -103,7 +103,7 @@ ylabel('Acceleration (ms$^{-2}$)')
 legend('x', 'y', 'z', 'Magnitude', 'Location', 'best')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_acceleration.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_acceleration.png', launch), 'Resolution', 600);
 
 
 figure
@@ -117,7 +117,7 @@ ylabel('Acceleration (ms$^{-2}$)')
 legend('x', 'y', 'z', 'Location', 'best')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_linacc.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_linacc.png', launch), 'Resolution', 600);
 
 
 figure
@@ -131,7 +131,7 @@ ylabel('Angular Velocity (rad s$^{-1}$)')
 legend('x', 'y', 'z', 'Location', 'best')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_gyro.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_gyro.png', launch), 'Resolution', 600);
 
 figure
 hold on
@@ -144,7 +144,7 @@ ylabel('Angle ($\deg$)')
 legend({'$\phi$' '$\psi$' '$\theta$'}, 'Location', 'best')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_orientation.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_orientation.png', launch), 'Resolution', 600);
 
 
 figure
@@ -158,7 +158,7 @@ ylabel('Angle ($\deg$)')
 legend({'$\phi$' '$\psi$' '$\theta$'}, 'Location', 'best')
 box on 
 grid minor
-exportgraphics(gcf, sprintf('%s_geomag_orientation.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_geomag_orientation.png', launch), 'Resolution', 600);
 
 figure
 plot(data.time, data.temp, 'LineWidth', lw, 'Color', col1)
@@ -167,7 +167,7 @@ xlabel('Time (s)')
 ylabel('Teperature ($^\circ C$)')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_temp.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_temp.png', launch), 'Resolution', 600);
 
 
 figure
@@ -177,6 +177,7 @@ xlabel('Data Points')
 ylabel('Time Elapsed (s)')
 box on
 grid minor
+exportgraphics(gcf, sprintf('plots/%s_datacap.png', launch), 'Resolution', 600);
 
 
 function data = unpack(launch)
