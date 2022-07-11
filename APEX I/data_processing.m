@@ -149,16 +149,16 @@ exportgraphics(gcf, sprintf('%s_orientation.png', launch), 'Resolution', 600);
 
 figure
 hold on
-plot(data.time, data.phi, 'LineWidth', lw, 'Color', col1)
-plot(data.time, data.theta, 'LineWidth', lw, 'Color', col2)
-plot(data.time, data.psi, 'LineWidth', lw, 'Color', col3)
-title('Orientation');
+plot(data.time, data.geophi, 'LineWidth', lw, 'Color', col1)
+plot(data.time, data.geotheta, 'LineWidth', lw, 'Color', col2)
+plot(data.time, data.geopsi, 'LineWidth', lw, 'Color', col3)
+title('Geomagnetic Orientation');
 xlabel('Time (s)')
 ylabel('Angle ($\deg$)')
 legend({'$\phi$' '$\psi$' '$\theta$'}, 'Location', 'best')
 box on 
 grid minor
-exportgraphics(gcf, sprintf('%s_orientation.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('%s_geomag_orientation.png', launch), 'Resolution', 600);
 
 figure
 plot(data.time, data.temp, 'LineWidth', lw, 'Color', col1)
