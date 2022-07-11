@@ -240,9 +240,20 @@ end
 
 function [phi, theta, psi] = q2e(i, j, k, w)
 
-    phi = atan((2*(i.*j + k.*w)/(1 - 2*(j.^2+k.^2))));
-    theta = asin(2*(i.*k - j.*w));
-    psi = atan((2*(i.*w + j.*k)/(1 - 2*(k.^2+w.^2))));
+    phi_t1 = 2*(i.*j + k.*w);
+    phi_t2 = 1 - 2*(j.^2 + k.^2);
+    phi = atan2(phi_t1, phi_t2);
+    
+    theta_t1 = 2*(i.*k - j.*w);
+    if abs(theta_t1) >= 1
+        theta = (pi/2)*sign(theta_t1);
+    else
+        theta = asin(theta_t1);
+    end
+    
+    psi_t1 = 2*(i.*w + j.*k);
+    psi_t2 = 1 - 2*(k.^2 + w.^2);
+    psi = atan2(psi_t1, psi_t2);
     
     phi = rad2deg(phi);
     theta = rad2deg(theta);
