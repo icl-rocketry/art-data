@@ -75,8 +75,9 @@ ylim([-100 550])
 xlabel('Time (s)')
 box on
 grid minor
-saveas(gca,'APEX_pnut_plot_vect','epsc')
-saveas(gca,'APEX_pnut_plot','png')
+% saveas(gca,'APEX_pnut_plot_vect','epsc')
+% saveas(gca,'APEX_pnut_plot','png')
+exportgraphics(gcf, sprintf('%s_pnut_plot.png', launch), 'Resolution', 600);
 
 data = parse(launch);
 
