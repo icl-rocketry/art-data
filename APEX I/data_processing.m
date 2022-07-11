@@ -131,6 +131,7 @@ ylabel('Angular Velocity (rad s$^{-1}$)')
 legend('x', 'y', 'z', 'Location', 'best')
 box on
 grid minor
+exportgraphics(gcf, sprintf('%s_gyro.png', launch), 'Resolution', 600);
 
 figure
 hold on
@@ -143,7 +144,7 @@ ylabel('Angle ($\deg$)')
 legend({'$\phi$' '$\psi$' '$\theta$'}, 'Location', 'best')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_gyro.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('%s_orientation.png', launch), 'Resolution', 600);
 
 
 figure
