@@ -75,8 +75,9 @@ ylim([-100 550])
 xlabel('Time (s)')
 box on
 grid minor
-saveas(gca,'APEX_pnut_plot_vect','epsc')
-saveas(gca,'APEX_pnut_plot','png')
+% saveas(gca,'APEX_pnut_plot_vect','epsc')
+% saveas(gca,'APEX_pnut_plot','png')
+exportgraphics(gcf, sprintf('plots/%s_pnut_plot.png', launch), 'Resolution', 600);
 
 data = parse(launch);
 
@@ -87,7 +88,7 @@ xlabel('Time (s)')
 ylabel('Altitude')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_DPSalt.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_DPSalt.png', launch), 'Resolution', 600);
 
 %%
 figure
@@ -102,7 +103,7 @@ ylabel('Acceleration (ms$^{-2}$)')
 legend('x', 'y', 'z', 'Magnitude', 'Location', 'best')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_acceleration.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_acceleration.png', launch), 'Resolution', 600);
 
 
 figure
@@ -116,7 +117,7 @@ ylabel('Acceleration (ms$^{-2}$)')
 legend('x', 'y', 'z', 'Location', 'best')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_linacc.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_linacc.png', launch), 'Resolution', 600);
 
 
 figure
@@ -130,6 +131,7 @@ ylabel('Angular Velocity (rad s$^{-1}$)')
 legend('x', 'y', 'z', 'Location', 'best')
 box on
 grid minor
+exportgraphics(gcf, sprintf('plots/%s_gyro.png', launch), 'Resolution', 600);
 
 figure
 hold on
@@ -142,21 +144,21 @@ ylabel('Angle ($\deg$)')
 legend({'$\phi$' '$\psi$' '$\theta$'}, 'Location', 'best')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_gyro.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_orientation.png', launch), 'Resolution', 600);
 
 
 figure
 hold on
-plot(data.time, data.phi, 'LineWidth', lw, 'Color', col1)
-plot(data.time, data.theta, 'LineWidth', lw, 'Color', col2)
-plot(data.time, data.psi, 'LineWidth', lw, 'Color', col3)
-title('Orientation');
+plot(data.time, data.geophi, 'LineWidth', lw, 'Color', col1)
+plot(data.time, data.geotheta, 'LineWidth', lw, 'Color', col2)
+plot(data.time, data.geopsi, 'LineWidth', lw, 'Color', col3)
+title('Geomagnetic Orientation');
 xlabel('Time (s)')
 ylabel('Angle ($\deg$)')
 legend({'$\phi$' '$\psi$' '$\theta$'}, 'Location', 'best')
 box on 
 grid minor
-exportgraphics(gcf, sprintf('%s_orientation.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_geomag_orientation.png', launch), 'Resolution', 600);
 
 figure
 plot(data.time, data.temp, 'LineWidth', lw, 'Color', col1)
@@ -165,7 +167,7 @@ xlabel('Time (s)')
 ylabel('Teperature ($^\circ C$)')
 box on
 grid minor
-exportgraphics(gcf, sprintf('%s_temp.png', launch), 'Resolution', 600);
+exportgraphics(gcf, sprintf('plots/%s_temp.png', launch), 'Resolution', 600);
 
 
 figure
@@ -175,6 +177,7 @@ xlabel('Data Points')
 ylabel('Time Elapsed (s)')
 box on
 grid minor
+exportgraphics(gcf, sprintf('plots/%s_datacap.png', launch), 'Resolution', 600);
 
 
 function data = unpack(launch)
@@ -237,9 +240,20 @@ end
 
 function [phi, theta, psi] = q2e(i, j, k, w)
 
-    phi = atan((2*(i.*j + k.*w)/(1 - 2*(j.^2+k.^2))));
-    theta = asin(2*(i.*k - j.*w));
-    psi = atan((2*(i.*w + j.*k)/(1 - 2*(k.^2+w.^2))));
+    phi_t1 = 2*(i.*j + k.*w);
+    phi_t2 = 1 - 2*(j.^2 + k.^2);
+    phi = atan2(phi_t1, phi_t2);
+    
+    theta_t1 = 2*(i.*k - j.*w);
+    if abs(theta_t1) >= 1
+        theta = (pi/2)*sign(theta_t1);
+    else
+        theta = asin(theta_t1);
+    end
+    
+    psi_t1 = 2*(i.*w + j.*k);
+    psi_t2 = 1 - 2*(k.^2 + w.^2);
+    psi = atan2(psi_t1, psi_t2);
     
     phi = rad2deg(phi);
     theta = rad2deg(theta);
