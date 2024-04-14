@@ -1,0 +1,46 @@
+Rocket Name,ICLR_Raven
+Max Altitude,1674.77 feet
+Max Velocity,318.29 feet/sec
+Pad Altitude ASL,165.21 feet
+Launch date,14-Apr-24
+Launch time,16:11:58.433
+Time to first burnout,1.9 sec
+Time to Apo channel fire,13.2 sec
+Time to gyro over-range,0.0 sec
+Time to third channel fire,4.2 sec
+Time to main channel fire,37.1 sec
+Time to fourth channel fire,1.9 sec
+Launch rod angle,4.0 deg
+Tilt angle at burnout,32.5 deg
+Roll rate at burnout,-156.8 deg/sec
+Thrust tilt efficiency,85.51%
+Number of ascent rolls,-3.624
+Horiz. velocity at apogee,89.8 feet/sec
+Inertial navigation max alt,1674.5 feet
+Max motor burn acceleration,101.3 Gs
+Peak drag deceleration,5.3 Gs
+Apo channel max accel,0.2 Gs
+Main channel max accel,1.4 Gs
+3rd channel max accel,101.3 Gs
+4th channel max accel,1.4 Gs
+Max landing accel,139.0 Gs
+Drogue descent rate,-50.6 feet/sec
+Main chute deploy altitude,697.4 feet
+Main chute descent rate,-43.9 feet
+Landing time,16:12:55.733
+Temperature on pad,71.1 F
+Max temperature,71.9 F
+Min Temperature,69.84 F
+Battery voltage on pad,11.94 V
+Min battery voltage,8.32 V
+Battery voltage at landing,11.9 V
+Build date,03-Feb-24
+Build time,11:34:33.000
+Flight number,9
+Direction of 1st motion,-1.0000,-0.0026,-0.0059
+Gravity direction on pad,-0.9970,-0.0326,-0.0696
+Low-G accel pad offset,0.0005,0.0000,0.0000
+Hi-G accel pad offset,-0.08,0.53,0.92
+Pad gyro rates (deg/sec),0.54,0.10,-0.43
+Pad Hi-G Accel,-1.07,0.50,0.85
+Pad low-G Accel,-1.00,-0.03,-0.07
