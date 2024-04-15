@@ -12,7 +12,7 @@ def toCelsius(f):
     return (f - 32) * 5/9
 
 #%%
-flight = "sustainer"
+flight = "stack"
 
 lr_fname = f"raven_{flight}_lr.csv"
 hr_fname = f"raven_{flight}_hr.csv"
@@ -36,8 +36,8 @@ lr = lr.rename(columns=col_map)
 # plot baro alt
 
 fig = px.line(lr, x="Flight_Time_(s)", 
-              y="Baro_Altitude_AGL", 
-              title=f"{flight} baro altitude AGL")
+              y="Baro_Altitude_AGL") 
+              #title=f"{flight} baro altitude AGL")
 
 fig.update_traces(line_color="#285943")
 
@@ -74,5 +74,5 @@ fig.add_annotation(x=t_end-10, y=alt_apogee-50,
 fig.update_layout(xaxis_title='Time (s)', yaxis_title='Altitude AGL (m)')
 fig.show()
 
-pio.write_image(fig, f"raven_{flight}_baro_altitude_agl.png")
+#pio.write_image(fig, f"raven_{flight}_baro_altitude_agl.png")
 # %%
